@@ -25,7 +25,6 @@
     <div class="nav-backdrop" id="nav-backdrop" hidden></div>
     <nav class="nav" id="site-nav">
       <a href="#services">Услуги</a>
-      <a href="#order">Заказ</a>
       <a href="#contact">Контакты</a>
       <a class="btn btn--primary nav-cta" href="#order">Оставить заявку</a>
     </nav>
@@ -50,7 +49,7 @@
         <a class="btn btn--ghost" href="#services">Что делаю</a>
       </div>
       <ul class="hero-stats" role="list">
-        <li><strong>12h</strong> первый ответ</li>
+        <li><strong>до 12h</strong> первый ответ</li>
         <li><strong>прозрачный</strong> и понятный план сотрудничества</li>
         <li><strong>качество</strong> и результат для каждого клиента</li>
       </ul>
@@ -60,22 +59,46 @@
       <h2 class="section-title">Услуги</h2>
       <p class="section-sub">Выберите направление для уточнения деталей.</p>
       <div class="cards">
-        <article class="card">
+        <article
+          class="card card--pickable"
+          data-task-type="Сайт / лендинг"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+        >
           <span class="card-icon" aria-hidden="true">◆</span>
           <h3>Сайты и лендинги</h3>
           <p>Визитки, промо-страницы, небольшие каталоги. Адаптивная вёрстка, скорость, SEO-база.</p>
         </article>
-        <article class="card">
+        <article
+          class="card card--pickable"
+          data-task-type="Мобильное приложение"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+        >
           <span class="card-icon" aria-hidden="true">◇</span>
           <h3>Мобильные приложения</h3>
           <p>Мобильные приложения для вашего бизнеса. Создание, доработка, поддержка.</p>
         </article>
-        <article class="card">
+        <article
+          class="card card--pickable"
+          data-task-type="Чат-бот / приложение внутри Telegram"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+        >
           <span class="card-icon" aria-hidden="true">◇</span>
           <h3>Чат-боты и приложения внутри Telegram</h3>
           <p>Автоматизация рутинных задач, интеграция с сторонними сервисами, удобный и привычный интерфейс.</p>
         </article>
-        <article class="card">
+        <article
+          class="card card--pickable"
+          data-task-type="Консультация / сопровождение"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+        >
           <span class="card-icon" aria-hidden="true">○</span>
           <h3>Запуски и сопровождение</h3>
           <p>Помогу собрать ТЗ, приоритизировать задачи и довести проект до публикации.</p>
@@ -149,7 +172,11 @@
             rel="noopener noreferrer"
           >
             <svg class="contact-chip__icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12 5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.18-.295.295-.605.295l.214-3.053 5.56-5.023c.242-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.642-.203-.658-.642.136-.953l11.566-4.458c.538-.196 1.006.131.832.941z"/>
+              <circle cx="12" cy="12" r="12" fill="currentColor"/>
+              <path
+                fill="#fff"
+                d="M6.95 11.96 17.4 7.9c.42-.15.72.08.6.58l-1.45 6.85c-.11.47-.4.58-.82.36l-2.22-1.64-1.08 1.04c-.12.12-.23.23-.46.23l.16-2.31 6.63-5.99c.27-.24-.05-.37-.36-.14L7.28 13.1l-1.93-.6c-.42-.13-.42-.42.08-.62l8.41-3.24c.4-.14.76.09.63.5z"
+              />
             </svg>
             Telegram
           </a>

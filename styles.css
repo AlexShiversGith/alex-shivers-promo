@@ -384,14 +384,30 @@ main {
 
 .hero-stats {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
   margin: 0;
   padding: 0;
   list-style: none;
   font-size: 0.9rem;
   color: var(--text-muted);
+}
+
+.hero-stats li {
+  width: 100%;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.hero-stats li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.hero-stats li:first-child {
+  padding-top: 0;
 }
 
 .hero-stats strong {
@@ -456,12 +472,31 @@ main {
   transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 
-.card:hover {
+.card--pickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.card--pickable:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.card:hover,
+.card--pickable.active {
   border-color: rgba(34, 211, 238, 0.45);
   box-shadow:
     0 0 0 1px rgba(168, 85, 247, 0.2),
     0 20px 50px -20px rgba(0, 0, 0, 0.5);
   transform: translateY(-2px);
+}
+
+.card--pickable.active {
+  border-color: var(--cyan);
+  background: rgba(34, 211, 238, 0.08);
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.35),
+    0 0 32px rgba(34, 211, 238, 0.15);
 }
 
 .card-icon {
@@ -710,9 +745,15 @@ main {
   }
 
   .hero-stats {
-    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 1.5rem 2rem;
+  }
+
+  .hero-stats li {
+    width: auto;
+    padding: 0;
+    border-bottom: none;
   }
 
   .cards {
@@ -825,6 +866,18 @@ main {
     width: 100%;
   }
 
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 2rem;
+  }
+
+  .hero-stats li {
+    width: auto;
+    padding: 0;
+    border-bottom: none;
+  }
+
   .contact.snap-section {
     justify-content: flex-start;
     align-items: stretch;
@@ -873,11 +926,6 @@ main {
 
 /* ——— Узкие телефоны ——— */
 @media (max-width: 380px) {
-  .hero-stats {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
   .hero-title {
     font-size: 1.75rem;
   }

@@ -1,10 +1,34 @@
 (function () {
-  var yearEl = document.getElementById("year");
+  const root = document.documentElement;
+  const viewportMobileMq = window.matchMedia("(max-width: 767px)");
+  const viewportTabletMq = window.matchMedia("(min-width: 768px) and (max-width: 1023px)");
+  const touchMq = window.matchMedia("(pointer: coarse)");
+
+  function updateViewportClass() {
+    root.classList.remove("viewport-mobile", "viewport-tablet", "viewport-desktop");
+
+    if (viewportMobileMq.matches) {
+      root.classList.add("viewport-mobile");
+    } else if (viewportTabletMq.matches) {
+      root.classList.add("viewport-tablet");
+    } else {
+      root.classList.add("viewport-desktop");
+    }
+
+    root.classList.toggle("device-touch", touchMq.matches);
+  }
+
+  updateViewportClass();
+  viewportMobileMq.addEventListener("change", updateViewportClass);
+  viewportTabletMq.addEventListener("change", updateViewportClass);
+  touchMq.addEventListener("change", updateViewportClass);
+
+  const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  var navToggle = document.querySelector(".nav-toggle");
-  var nav = document.getElementById("site-nav");
-  var backdrop = document.getElementById("nav-backdrop");
+  const navToggle = document.querySelector(".nav-toggle");
+  const nav = document.getElementById("site-nav");
+  const backdrop = document.getElementById("nav-backdrop");
 
   function setNavOpen(open) {
     if (!navToggle || !nav) return;
@@ -18,12 +42,12 @@
     }
   }
 
-  var desktopMq = window.matchMedia("(min-width: 1024px)");
-  var snapSections = document.querySelectorAll(".snap-section");
-  var snapObserver = null;
+  const desktopMq = window.matchMedia("(min-width: 1024px)");
+  const snapSections = document.querySelectorAll(".snap-section");
+  let snapObserver = null;
 
   function initSnapScroll() {
-    var root = document.documentElement;
+    const root = document.documentElement;
 
     if (!desktopMq.matches || !snapSections.length) {
       root.classList.remove("snap-desktop");
@@ -69,7 +93,7 @@
 
   if (navToggle && nav) {
     navToggle.addEventListener("click", function () {
-      var isOpen = navToggle.getAttribute("aria-expanded") === "true";
+      const isOpen = navToggle.getAttribute("aria-expanded") === "true";
       setNavOpen(!isOpen);
     });
 
@@ -92,7 +116,7 @@
     });
   }
 
-  var wa = document.getElementById("wa-placeholder");
+  const wa = document.getElementById("wa-placeholder");
   if (wa) {
     wa.addEventListener("click", function (e) {
       e.preventDefault();
@@ -100,27 +124,85 @@
     });
   }
 
-  var form = document.getElementById("order-form");
+  const form = document.getElementById("order-form");
+  const typeSelect = form && form.querySelector('[name="type"]');
+  const serviceCards = document.querySelectorAll(".card--pickable[data-task-type]");
+  const orderSection = document.getElementById("order");
+
+  function setActiveServiceCard(card) {
+    serviceCards.forEach(function (item) {
+      const isActive = card !== null && item === card;
+      item.classList.toggle("active", isActive);
+      item.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+
+  function selectService(card) {
+    const taskType = card.getAttribute("data-task-type");
+    if (!taskType) return;
+
+    setActiveServiceCard(card);
+
+    if (typeSelect) {
+      typeSelect.value = taskType;
+    }
+
+    if (orderSection) {
+      orderSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  serviceCards.forEach(function (card) {
+    card.addEventListener("click", function () {
+      selectService(card);
+    });
+
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        selectService(card);
+      }
+    });
+  });
+
+  if (typeSelect) {
+    typeSelect.addEventListener("change", function () {
+      const value = typeSelect.value;
+      let matched = false;
+
+      serviceCards.forEach(function (card) {
+        if (card.getAttribute("data-task-type") === value) {
+          setActiveServiceCard(card);
+          matched = true;
+        }
+      });
+
+      if (!matched) {
+        setActiveServiceCard(null);
+      }
+    });
+  }
+
   if (!form) return;
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    var btn = form.querySelector('button[type="submit"]');
-    var telegramUser = (btn && btn.getAttribute("data-telegram")) || "your_username";
+    const btn = form.querySelector('button[type="submit"]');
+    let telegramUser = (btn && btn.getAttribute("data-telegram")) || "your_username";
     telegramUser = telegramUser.replace(/^@/, "");
 
-    var fd = new FormData(form);
-    var name = String(fd.get("name") || "").trim();
-    var contact = String(fd.get("contact") || "").trim();
-    var type = String(fd.get("type") || "").trim();
-    var details = String(fd.get("details") || "").trim();
+    const fd = new FormData(form);
+    const name = String(fd.get("name") || "").trim();
+    const contact = String(fd.get("contact") || "").trim();
+    const type = String(fd.get("type") || "").trim();
+    const details = String(fd.get("details") || "").trim();
 
     if (!name || !contact || !type || !details) {
       alert("Заполните все поля формы.");
       return;
     }
 
-    var text =
+    const text =
       "Новая заявка с сайта\n\n" +
       "Имя: " +
       name +
@@ -133,7 +215,8 @@
       "\n\n" +
       details;
 
-    var url = "https://t.me/" + encodeURIComponent(telegramUser) + "?text=" + encodeURIComponent(text);
+    const url =
+      "https://t.me/" + encodeURIComponent(telegramUser) + "?text=" + encodeURIComponent(text);
     window.open(url, "_blank", "noopener,noreferrer");
   });
 })();
