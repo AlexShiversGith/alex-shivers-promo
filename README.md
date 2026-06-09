@@ -1,6 +1,6 @@
 # promotion-site
 
-Сайт-визитка Alex Shivers — услуги, заявка в Telegram, контакты.
+Сайт-визитка Alex Shivers.
 
 ## Локальный запуск
 
