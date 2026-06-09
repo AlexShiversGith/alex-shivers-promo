@@ -3,11 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Персональный сайт — услуги и заказы" />
-  <title>Сайт-визитка</title>
+  <meta
+    name="description"
+    content="Alex Shivers — разработка сайтов, Telegram-ботов и мобильных приложений. Заявка на проект за 12 часов."
+  />
+  <title>Alex Shivers — сайты, боты и приложения</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="assets/fonts/xn7gYHE41ni1AdIRggOxSuXd.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/8vIH7w4qzmVxm2BL9A.woff2" as="font" type="font/woff2" crossorigin />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:title" content="Alex Shivers — сайты, боты и приложения" />
+  <meta
+    property="og:description"
+    content="Разработка сайтов, Telegram-ботов и мобильных приложений. Оставьте заявку — отвечу в течение 12 часов."
+  />
+  <meta property="og:image" content="assets/og-cover.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0a0612" />
   <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Alex Shivers",
+    "jobTitle": "Разработчик цифровых продуктов",
+    "url": "https://github.com/Alex-Shivers",
+    "sameAs": ["https://t.me/Alex_Shivers"]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
   <div class="noise" aria-hidden="true"></div>
   <header class="header">
     <a class="logo" href="#top">Alex<span class="logo-dot">·</span>Shivers</a>
@@ -25,13 +52,25 @@
     <div class="nav-backdrop" id="nav-backdrop" hidden></div>
     <nav class="nav" id="site-nav">
       <a href="#services">Услуги</a>
+      <a href="#works">Работы</a>
+      <a href="#process">Процесс</a>
       <a href="#contact">Контакты</a>
       <a class="btn btn--primary nav-cta" href="#order">Оставить заявку</a>
     </nav>
     <a class="btn btn--sm btn--outline header-cta" href="#order">Оставить заявку</a>
+    <div
+      class="header-scroll-progress"
+      role="progressbar"
+      aria-valuenow="0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-label="Прогресс прокрутки страницы"
+    >
+      <span class="header-scroll-progress__bar" id="scroll-progress-bar"></span>
+    </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero snap-section" id="top">
       <div class="hero-glow hero-glow--1"></div>
       <div class="hero-glow hero-glow--2"></div>
@@ -41,12 +80,13 @@
         создаю цифровые продукты
       </h1>
       <p class="hero-lead">
-        Сайты, дизайны, чат-ботов, мобильные приложения. Сопровождение запусков. Короткие сроки, понятная коммуникация,
-        результат, который можно показать клиенту.
+        Лендинги, Telegram-боты, мобильные приложения и сопровождение запусков. Понятные сроки,
+        прозрачный план и результат, который можно показать клиенту.
       </p>
+      <p class="hero-proof">Ответ на заявку — до 12 часов · удалённо, по всему миру</p>
       <div class="hero-actions">
         <a class="btn btn--primary" href="#order">Обсудить заказ</a>
-        <a class="btn btn--ghost" href="#services">Что делаю</a>
+        <a class="btn btn--ghost" href="#works">Примеры работ</a>
       </div>
       <ul class="hero-stats" role="list">
         <li><strong>до 12h</strong> первый ответ</li>
@@ -66,9 +106,26 @@
           tabindex="0"
           aria-pressed="false"
         >
-          <span class="card-icon" aria-hidden="true">◆</span>
+          <svg class="card-icon-svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.75"/>
+            <path d="M3 9h18" stroke="currentColor" stroke-width="1.75"/>
+          </svg>
           <h3>Сайты и лендинги</h3>
-          <p>Визитки, промо-страницы, небольшие каталоги. Адаптивная вёрстка, скорость, SEO-база.</p>
+          <p>Визитки, промо-страницы, каталоги. Адаптив, скорость, SEO-база.</p>
+        </article>
+        <article
+          class="card card--pickable"
+          data-task-type="Дизайн / визуал"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+        >
+          <svg class="card-icon-svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 20h4l10.5-10.5a2.12 2.12 0 0 0-3-3L5 17v3z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+            <path d="M13.5 6.5l3 3" stroke="currentColor" stroke-width="1.75"/>
+          </svg>
+          <h3>Дизайн и визуал</h3>
+          <p>Обложки, баннеры, презентации, единый стиль под продукт или мероприятие.</p>
         </article>
         <article
           class="card card--pickable"
@@ -77,9 +134,12 @@
           tabindex="0"
           aria-pressed="false"
         >
-          <span class="card-icon" aria-hidden="true">◇</span>
+          <svg class="card-icon-svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="7" y="2" width="10" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.75"/>
+            <path d="M11 18h2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
           <h3>Мобильные приложения</h3>
-          <p>Мобильные приложения для вашего бизнеса. Создание, доработка, поддержка.</p>
+          <p>Создание, доработка и поддержка приложений для вашего бизнеса.</p>
         </article>
         <article
           class="card card--pickable"
@@ -88,9 +148,12 @@
           tabindex="0"
           aria-pressed="false"
         >
-          <span class="card-icon" aria-hidden="true">◇</span>
-          <h3>Чат-боты и приложения внутри Telegram</h3>
-          <p>Автоматизация рутинных задач, интеграция с сторонними сервисами, удобный и привычный интерфейс.</p>
+          <svg class="card-icon-svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3 4 8v8l8 5 8-5V8l-8-5z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+            <path d="M9.5 12.5 11 14l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+          <h3>Чат-боты в Telegram</h3>
+          <p>Автоматизация, интеграции и привычный интерфейс для клиентов.</p>
         </article>
         <article
           class="card card--pickable"
@@ -99,11 +162,61 @@
           tabindex="0"
           aria-pressed="false"
         >
-          <span class="card-icon" aria-hidden="true">○</span>
+          <svg class="card-icon-svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.75"/>
+          </svg>
           <h3>Запуски и сопровождение</h3>
-          <p>Помогу собрать ТЗ, приоритизировать задачи и довести проект до публикации.</p>
+          <p>ТЗ, приоритеты и доведение проекта до публикации.</p>
         </article>
       </div>
+    </section>
+
+    <section id="works" class="section works snap-section">
+      <h2 class="section-title">Работы</h2>
+      <p class="section-sub">Примеры работ по каждому направлению.</p>
+      <div class="works-grid">
+        <article class="work-card">
+          <p class="work-card__tag">Сайт</p>
+          <h3 class="work-card__title">Сайт-визитка</h3>
+          <p class="work-card__text">Неоновый лендинг с формой заявки в Telegram и адаптивом под все устройства.</p>
+          <a class="work-card__link" href="https://github.com/Alex-Shivers/promotion-site" target="_blank" rel="noopener noreferrer">Код на GitHub →</a>
+        </article>
+        <article class="work-card">
+          <p class="work-card__tag">Telegram</p>
+          <h3 class="work-card__title">Боты и Mini App</h3>
+          <p class="work-card__text">Автоматизация заявок, уведомления, интеграция с таблицами и CRM.</p>
+          <a class="work-card__link" href="https://t.me/Alex_Shivers" target="_blank" rel="noopener noreferrer">Обсудить в Telegram →</a>
+        </article>
+        <article class="work-card">
+          <p class="work-card__tag">Mobile</p>
+          <h3 class="work-card__title">Мобильные приложения</h3>
+          <p class="work-card__text">Кроссплатформенная разработка, доработка существующих проектов, публикация в сторах.</p>
+          <a class="work-card__link" href="#order">Запросить расчёт →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="process" class="section process snap-section">
+      <h2 class="section-title">Как работаем</h2>
+      <p class="section-sub">Три шага от идеи до результата — без сюрпризов по срокам.</p>
+      <ol class="steps">
+        <li class="step">
+          <span class="step__num">01</span>
+          <h3 class="step__title">Заявка и уточнение</h3>
+          <p class="step__text">Вы описываете задачу в форме или в Telegram. Уточняем цели, сроки и бюджет.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">02</span>
+          <h3 class="step__title">План и реализация</h3>
+          <p class="step__text">Фиксируем объём работ, этапы и сроки. Держу в курсе на каждом шаге.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">03</span>
+          <h3 class="step__title">Сдача и поддержка</h3>
+          <p class="step__text">Передаю готовый продукт, помогаю с публикацией и при необходимости дорабатываю.</p>
+        </li>
+      </ol>
     </section>
 
     <section id="order" class="section order snap-section">
@@ -111,19 +224,22 @@
         <div class="order-intro">
           <h2 class="section-title section-title--left">Заявка на заказ</h2>
           <p class="section-sub section-sub--left">
-            Заполните форму и нажмите кнопку — откроется Telegram с текстом заявки.
+            Заполните форму — откроется Telegram с текстом заявки. Если окно не открылось, скопируйте текст кнопкой ниже.
           </p>
         </div>
         <form class="order-form" id="order-form" novalidate>
-          <label class="field">
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+          <label class="field" data-field="name">
             <span class="field-label">Имя</span>
             <input type="text" name="name" required autocomplete="name" placeholder="Как к вам обращаться" />
+            <span class="field-error" hidden></span>
           </label>
-          <label class="field">
+          <label class="field" data-field="contact">
             <span class="field-label">Контакт</span>
             <input type="text" name="contact" required autocomplete="tel" placeholder="Telegram, email или телефон" />
+            <span class="field-error" hidden></span>
           </label>
-          <label class="field">
+          <label class="field" data-field="type">
             <span class="field-label">Тип задачи</span>
             <select name="type" required>
               <option value="" disabled selected>Выберите вариант</option>
@@ -134,14 +250,19 @@
               <option>Консультация / сопровождение</option>
               <option>Другое</option>
             </select>
+            <span class="field-error" hidden></span>
           </label>
-          <label class="field field--full">
+          <label class="field field--full" data-field="details">
             <span class="field-label">Опишите задачу</span>
             <textarea name="details" rows="4" required placeholder="Сроки, референсы, бюджет — что считаете важным"></textarea>
+            <span class="field-error" hidden></span>
           </label>
           <div class="order-form-footer field--full">
             <button type="submit" class="btn btn--primary btn--wide" data-telegram="Alex_Shivers">
               Отправить в Telegram
+            </button>
+            <button type="button" class="btn btn--ghost btn--wide" id="copy-order" hidden>
+              Скопировать текст заявки
             </button>
             <p class="form-hint">Максимальное время ответа — 12 часов.</p>
           </div>
@@ -152,12 +273,14 @@
     <section id="contact" class="section contact snap-section">
       <div class="contact-inner">
         <h2 class="section-title">Контакты</h2>
-      <p class="section-sub">Для более подробного обсуждения будущих проектов напишите удобным способом.</p>
+        <p class="section-sub">Напишите удобным способом — обсудим детали проекта.</p>
         <div class="contact-links">
           <a
             class="contact-chip contact-chip--gmail"
+            id="gmail-contact"
             href="https://mail.google.com/mail/?view=cm&fs=1&to=alex.shivers.gith@gmail.com&su=%D0%97%D0%B0%D1%8F%D0%B2%D0%BA%D0%B0%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0"
-            target="_blank"
+            data-gmail-to="alex.shivers.gith@gmail.com"
+            data-gmail-subject="Заявка с сайта"
             rel="noopener noreferrer"
           >
             <svg class="contact-chip__icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
@@ -183,8 +306,8 @@
         </div>
       </div>
       <footer class="footer footer--contact">
-        <span>© <span id="year"></span> · created by Alex Shivers</span>
-        <span class="footer-note">All rights reserved</span>
+        <span>© <span id="year"></span> Alex Shivers</span>
+        <span class="footer-note">Все права защищены</span>
       </footer>
     </section>
   </main>
